@@ -46,9 +46,10 @@ for dir in $MODELDIR/*; do
         cp log.* ../data/"$DATADIR"_fine/
         echo "data copied"
         
-        rm -r 0.orig
+        rm -r 0.orig 0
         rm constant/turbulenceProperties constant/transportProperties
-
+        
+        ./Allclean
         #cd back to main dir
         cd ..
     
