@@ -1,0 +1,122 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2206                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     simpleFoam;
+
+startFrom       startTime;
+//startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         6000;
+
+deltaT          1;
+
+writeControl    timeStep;
+
+writeInterval   1000;
+
+purgeWrite      1;
+
+writeFormat     binary;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+functions
+{
+    #includeFunc solverInfo
+    #includeFunc yPlus
+    #includeFunc grad    
+    #includeFunc yProfilesGraph
+
+
+forceCoeffs1
+{
+    type        forceCoeffs;
+    libs        ("libforces.so");
+    patches     ("wall");
+
+    magUInf     1;
+    lRef        2;
+    Aref        2;
+    rho         rhoInf;
+    rhoInf      1;
+
+    coefficients (Cd); 
+    liftDir     (0 0 1);
+    dragDir     (1 0 0);
+
+    CofR        (0 0 0);
+    pitchAxis   (0 1 0);
+
+
+}
+
+
+runTimeControl1
+{
+    type            runTimeControl;
+    libs            ("libutilityFunctionObjects.so");
+    conditions
+    {
+        /*condition0
+        {
+            type            equationInitialResidual;
+            fields          (U);
+            value           0.7;
+            mode            maximum;
+        }
+        condition1
+        {
+            type            equationMaxIter;
+            fields          (U);
+            threshold       100;
+        }*/
+        condition2
+        {
+            type            average;
+            functionObject  forceCoeffs1;
+            fields          (Cd);
+            tolerance       1e-3;
+            windowType      approximate;
+            window          20;
+            groupID         1;
+        }
+        condition3
+        {
+            type            equationInitialResidual;
+            fields          ("(U|p)");
+            value           1e-04;
+            mode            minimum;
+            groupID         1;
+        }
+    }
+}
+
+}
+
+
+// ************************************************************************* //

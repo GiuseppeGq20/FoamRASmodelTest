@@ -1,0 +1,73 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2206                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      binary;
+    arch        "LSB;label=32;scalar=64";
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+6
+(
+    inlet
+    {
+        type            cyclic;
+        inGroups        1(cyclic);
+        nFaces          80;
+        startFace       3100;
+        matchTolerance  0.0001;
+        transform       translational;
+        neighbourPatch  outlet;
+        separationVector (2 0 0);
+    }
+    outlet
+    {
+        type            cyclic;
+        inGroups        1(cyclic);
+        nFaces          80;
+        startFace       3180;
+        matchTolerance  0.0001;
+        transform       translational;
+        neighbourPatch  inlet;
+        separationVector (-2 0 0);
+    }
+    symm
+    {
+        type            symmetry;
+        inGroups        1(symmetry);
+        nFaces          20;
+        startFace       3260;
+    }
+    wall
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          20;
+        startFace       3280;
+    }
+    front
+    {
+        type            empty;
+        inGroups        1(empty);
+        nFaces          1600;
+        startFace       3300;
+    }
+    back
+    {
+        type            empty;
+        inGroups        1(empty);
+        nFaces          1600;
+        startFace       4900;
+    }
+)
+
+// ************************************************************************* //
