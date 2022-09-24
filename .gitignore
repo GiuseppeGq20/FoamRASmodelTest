@@ -10,4 +10,5 @@ Make/*
 !Make/files
 !Make/options
 
-
+# datadir
+data/*
