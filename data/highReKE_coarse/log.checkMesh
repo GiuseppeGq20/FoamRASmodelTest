@@ -9,9 +9,9 @@ Build  : _76d719d1-20220624 OPENFOAM=2206 version=2206
 Arch   : "LSB;label=32;scalar=64"
 Exec   : checkMesh -allTopology -allGeometry -constant
 Date   : Sep 24 2022
-Time   : 11:24:42
+Time   : 12:37:58
 Host   : fedoragq
-PID    : 28366
+PID    : 33134
 I/O    : uncollated
 Case   : /home/giuseppegq/volume/OpenFoam/planeChannelRAS/common
 nProcs : 1
@@ -22,6 +22,11 @@ allowSystemOperations : Allowing user-supplied system call operations
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 Create time
 
+--> FOAM Warning : 
+    From void* Foam::dlLibraryTable::openLibrary(const Foam::fileName&, bool)
+    in file db/dynamicLibrary/dlLibraryTable/dlLibraryTable.C at line 188
+    Could not load "libmyRASmodel.so"
+/home/giuseppegq/OpenFOAM/giuseppegq-2206/platforms/linux64GccDPInt32Opt/lib/libmyRASmodel.so: undefined symbol: _ZTIN4Foam29incompressibleTurbulenceModelE
 Create mesh for time = constant
 
 Enabling all (cell, face, edge, point) topology checks.
