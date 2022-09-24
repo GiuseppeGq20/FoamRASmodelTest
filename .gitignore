@@ -1,0 +1,13 @@
+
+# visual studio code
+.code/*
+
+
+# ignore turbulence models build prducts
+lnInclude
+
+Make/*
+!Make/files
+!Make/options
+
+
