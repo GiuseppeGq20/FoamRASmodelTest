@@ -1,7 +1,8 @@
 
 # visual studio code
 .code/*
-
+# python and jupyter
+.ipynb_checkpoints/
 
 # ignore turbulence models build prducts
 lnInclude
@@ -10,5 +11,8 @@ Make/*
 !Make/files
 !Make/options
 
-# datadir
+# data
 data/*
+*.dat
+*.csv
+figures/
