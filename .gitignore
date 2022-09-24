@@ -16,3 +16,6 @@ data/*
 *.dat
 *.csv
 figures/
+
+#MAC OS
+.DS_STORE
