@@ -23,7 +23,7 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         4500;
+endTime         5000;
 
 deltaT          1;
 
@@ -49,7 +49,7 @@ functions
 {
     #includeFunc solverInfo
     #includeFunc yPlus
-    #includeFunc grad    
+    //#includeFunc grad    
     //#includeFunc yProfilesGraph
 
 
@@ -81,22 +81,37 @@ runTimeControl1
     type            runTimeControl;
     libs            ("libutilityFunctionObjects.so");
     conditions
-    {
+    {   
+        //divergenge indicator
+        condition0
+        {
+            type            equationInitialResidual;
+            fields          (U);
+            value           0.7;
+            mode            maximum;
+        }
+        condition1
+        {
+            type            equationMaxIterCondition;
+            fields          (U);
+            threshold       100;
+        }
+
         condition1
         {
             type            average;
             functionObject  forceCoeffs1;
             fields          (Cd);
-            tolerance       1e-3;
+            tolerance       1e-4;
             windowType      approximate;
-            window          20;
+            window          500;
             groupID         1;
         }
         condition2
         {
             type            equationInitialResidual;
-            fields          ("(U|p)");
-            value           1e-04;
+            fields          ("(U)");
+            value           1e-03;
             mode            minimum;
             groupID         1;
         }
