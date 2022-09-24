@@ -9,9 +9,9 @@ Build  : _76d719d1-20220624 OPENFOAM=2206 version=2206
 Arch   : "LSB;label=32;scalar=64"
 Exec   : simpleFoam
 Date   : Sep 24 2022
-Time   : 01:00:48
+Time   : 02:15:46
 Host   : fedoragq
-PID    : 15544
+PID    : 19891
 I/O    : uncollated
 Case   : /home/giuseppegq/volume/OpenFoam/planeChannelRAS/common
 nProcs : 1

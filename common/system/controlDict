@@ -50,7 +50,7 @@ functions
     #includeFunc solverInfo
     #includeFunc yPlus
     #includeFunc grad    
-    #includeFunc yProfilesGraph
+    //#includeFunc yProfilesGraph
 
 
 forceCoeffs1
